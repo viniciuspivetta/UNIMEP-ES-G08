@@ -1,0 +1,313 @@
+package br.com.unimep.programa.aulas2;
+import java.util.Scanner;
+
+
+public class Programa {
+	
+	public static Scanner sc= new Scanner(System.in);
+	
+	
+	public static void main(String[] args) {
+		
+		Sessao sessao = new Sessao();
+		Sala sala = new Sala();
+		Ingresso ingresso = new Ingresso();
+		
+		
+	 	System.out.println("Temos as seguintes sess�es: \n");
+		
+		System.out.println("Data:"+sessao.getDataSessao()+" \n");
+		
+		System.out.println("Hora:"+sessao.getHoraSessao()+" \n");
+		
+		System.out.println("Selecione o dia da sess�o \n");
+		String dia = sc.next();
+		
+		System.out.println("Selecione o horario da sess�o \n");
+		String horario = sc.next();
+		
+		sessao.selecionarSessao(dia, horario);
+		
+			sala.consultarSala();
+			System.out.println("Selecione a sala \n");
+			int escolhaSala = sc.nextInt();
+			
+			if (sala.getNumeroSala() == escolhaSala) {
+				System.out.println("Capacidade da sala � de: "+sala.getCapacidadeSala());
+				
+				ingresso.imprimirIngresso();
+				
+			} else {System.out.println("Sala n�o encontrada \n");}		
+			
+		}
+
+	public static Scanner getSc() {
+		return sc;
+	}
+
+	public static void setSc(Scanner sc) {
+		Programa.sc = sc;
+	}
+
+	public static String gethorario() {
+		return null;
+	}
+
+}
+package br.com.unimep.programa.aulas2;
+
+public class Sala {
+	
+	private int numeroSala;
+	private int capacidadeSala;
+
+	
+	 void consultarSala() {
+
+			System.out.println("Temos disponiveis as seguintes salas: \n N�mero:"+ numeroSala +"\n Tem a capacidade de suportar: " +capacidadeSala);
+			
+	 					}
+
+	public int getNumeroSala() {
+		return numeroSala;
+	}
+
+	public void setNumeroSala(int numeroSala) {
+		this.numeroSala = numeroSala;
+	}
+
+	public int getCapacidadeSala() {
+		return capacidadeSala;
+	}
+
+	public void setCapacidadeSala(int capacidadeSala) {
+		this.capacidadeSala = capacidadeSala;
+	}
+	
+}
+package br.com.unimep.programa.aulas2;
+
+import java.util.Scanner;
+
+
+public class Sessao {
+	public static Scanner sc= new Scanner(System.in);
+	
+	private String dataSessao;
+	private String horaSessao;
+	private double valorInteira;
+	private double valorMeia;
+	private boolean sessaoEncerrada;
+	
+	void selecionarSessao(String dia,String horario) {
+		
+		
+		if (this.sessaoEncerrada == false) {
+		System.out.println("Valor inteira:"+valorInteira+" \n");
+
+		
+		System.out.println("Valor meia:"+valorMeia+" \n");
+		
+		
+		if (Programa.gethorario() == this.getHoraSessao()) {
+			System.out.println("Sessao das "+getHoraSessao()+": "+Filme.getTituloFilme()+" \n");
+			System.out.println("Dura��o de: "+Filme.getDuracaoFilme()+ "\n");
+			System.out.println("G�nero: "+Genero.getDescricaoGenero()+ "\n");
+			System.out.println("Ator: "+Ator.NomeAtor()+ "\n");
+			System.out.println("Papel do Ator: "+Atua.getPapelAtorFilme()+ "\n");
+			
+		}
+		
+	} else {System.out.println("Sessao encerrada");}
+		
+		}
+
+	public static Scanner getSc() {
+		return sc;
+	}
+
+	public static void setSc(Scanner sc) {
+		Sessao.sc = sc;
+	}
+
+	public double getValorInteira() {
+		return valorInteira;
+	}
+
+	public void setValorInteira(double valorInteira) {
+		this.valorInteira = valorInteira;
+	}
+
+	public double getValorMeia() {
+		return valorMeia;
+	}
+
+	public void setValorMeia(double valorMeia) {
+		this.valorMeia = valorMeia;
+	}
+
+	public boolean isSessaoEncerrada() {
+		return sessaoEncerrada;
+	}
+
+	public void setSessaoEncerrada(boolean sessaoEncerrada) {
+		this.sessaoEncerrada = sessaoEncerrada;
+	}
+
+	public String getDataSessao() {
+		return dataSessao;
+	}
+
+	public void setDataSessao(String dataSessao) {
+		this.dataSessao = dataSessao;
+	}
+
+	public String getHoraSessao() {
+		return horaSessao;
+	}
+
+	public void setHoraSessao(String horaSessao) {
+		this.horaSessao = horaSessao;
+	}
+	
+}
+package br.com.unimep.programa.aulas2;
+
+public class Assento {
+
+	private String codigoAssento;
+
+	public String getCodigoAssento() {
+		return codigoAssento;
+	}
+
+	public void setCodigoAssento(String codigoAssento) {
+		this.codigoAssento = codigoAssento;
+	}
+	
+}
+
+package br.com.unimep.programa.aulas2;
+
+public class Ator {
+
+	String nomeAtor;
+
+	public static String NomeAtor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}
+
+package br.com.unimep.programa.aulas2;
+
+public class Atua {
+	
+	private String papelAtorFilme;
+
+	public static String getPapelAtorFilme() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+
+package br.com.unimep.programa.aulas2;
+
+public class Filme {
+
+	private static  String tituloFilme;
+	private String duracaoFilme;
+	
+	void consultarFilme(String f) {
+		String filme = f;
+		if (Filme.getTituloFilme() == filme) {
+			System.out.println("O filme escolhido �:"+ getTituloFilme() +" e dura��o de " +duracaoFilme);
+		} else {System.out.println("Filme n�o encontrado");}
+}
+
+public static String getTituloFilme() {
+	return tituloFilme;
+}
+
+public static String getDuracaoFilme() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public static void setTituloFilme(String tituloFilme) {
+	Filme.tituloFilme = tituloFilme;
+}
+
+public void setDuracaoFilme(String duracaoFilme) {
+	this.duracaoFilme = duracaoFilme;
+}
+		
+}
+		
+
+
+package br.com.unimep.programa.aulas2;
+
+public class Genero {
+	
+	private String descricaoGenero;
+
+	public static String getDescricaoGenero() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+
+package br.com.unimep.programa.aulas2;
+import java.util.Scanner;
+
+public class Ingresso {
+	
+	public static Scanner sc= new Scanner(System.in);
+	
+	private int tipoIngresso;
+	private static String codigoAssentoIngresso; 
+		
+
+
+	public int getTipoIngresso() {
+		return tipoIngresso;
+	}
+
+
+	public void imprimirIngresso() {
+		System.out.println("Selecione o n� do assento \n");
+		
+		Ingresso.setCodigoAssentoIngresso(sc.next());
+		
+		System.out.println("Sess�o dia :"+getDataSessao()+"\n Hor�rio :"+getHoraSessao()+"\n Acento: "+getCodigoAssentoIngresso()+"\n Ingresso tipo: "+tipoIngresso+
+				" \n Titulo do Filme:"+Filme.getTituloFilme()+"\n Com :"+Atua.getPapelAtorFilme());
+	
+	}
+	
+
+	private String getHoraSessao() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private String getDataSessao() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public static String getCodigoAssentoIngresso() {
+		return codigoAssentoIngresso;
+	}
+
+
+	public static void setCodigoAssentoIngresso(String codigoAssentoIngresso) {
+		Ingresso.codigoAssentoIngresso = codigoAssentoIngresso;
+	}
+
+
+}
