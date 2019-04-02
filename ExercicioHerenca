@@ -1,0 +1,259 @@
+package br.com.unimep.empresa;
+
+public class Programa {
+
+	public static void main(String[] args) {
+		
+//	    Funcionario func1 = new Funcionario("Alfredo");
+//		func1.setNome("Alfredo");
+//		func1.setEmail("teste@teste.com.br");
+//		func1.setTelefone("19 99235 5588");
+//		func1.setSalario(3500.00);
+//		
+//		System.out.println(func1.getNome() + ": R$ " + func1.getSalario());
+//		System.out.println(func1.calculaPLR());
+		
+		Gerente gerente1 = new Gerente("Eugenio");
+//		gerente1.setNome("Eugenio");
+		gerente1.setEmail("teste@teste.com.br");
+		gerente1.setSalario(35000.00);
+		
+//		System.out.println(gerente1.calculaPLR());
+		
+		Coordenador coord1 = new Coordenador("Eugenio");
+//		coord1.setNome("Eugenio");
+		coord1.setEmail("teste@teste.com.br");
+		coord1.setSalario(5000.00);
+		
+		//System.out.println(coord1.calculaPLR());
+		
+		
+		Funcionario funcGerente = new Gerente("teste");
+		funcGerente.setSalario(5000.00);
+		
+		Funcionario funcCoordenador = new Coordenador("teste");
+		funcCoordenador.setSalario(5000.00);
+		
+		//Funcionario funcionariopadrao = new Funcionario("teste");
+	    //funcionariopadrao.setSalario(5000.00);
+		
+        //Funcionario var = new Gerente():
+		
+		ControlaPremio controle = new ControlaPremio();
+		
+	    //double resultadoFuncionario = controle.calculaPremio(funcionariopadrao);
+		double resultadoGerente = controle.calculaPremio(funcGerente);
+		double resultadoCoordenador = controle.calculaPremio(funcCoordenador);
+		
+        //System.out.println("O Premio do Funcionario é de R$ "+resultadoFuncionario);
+		//System.out.println("O Premio do Coordenador é de R$ "+resultadoCoordenador);
+		//System.out.println("O Premio do Gerente é de R$ "+resultadoGerente);
+		
+		
+		
+		
+		//Testando as Novas Classes e Interface
+		
+		Funcionario operador = new Operadores("Zezinho");
+		operador.setSalario(1500.00);
+		
+		Funcionario analistas = new Analistas("Nielson");
+		analistas.setSalario(20000.00);		
+
+		Funcionario gerenteNovo = new Gerente("Fred");
+		gerenteNovo.setSalario(35000.00);	
+		
+		Funcionario coordenadorNovo = new Coordenador("Huck");
+		coordenadorNovo.setSalario(15000.00);
+		
+			
+		
+		//System.out.println(operador.calculaPLR());
+		//System.out.println(analistas.calculaPLR());
+		System.out.println("Salario do coordenador é "+coordenadorNovo.getSalario());
+		System.out.println("PLR do coordenador é "+coordenadorNovo.calculaPLR());
+		System.out.println("Bonus de resultado do coordenador é "+coordenadorNovo.bonusResultado(15000));
+		System.out.println("Bonus de carreira do coordenador é "+coordenadorNovo.bonusCarreira(6, 15000));
+		
+//Para poder chamar a função bonusResultado e bonusCarreira temos que herdar Gestão de funcionário, dando um implements gestao na classe funcionario
+//Feito Por Vinicius Pivetta, Rafael França e Gabriel Rasera
+				
+	}
+
+}
+
+package br.com.unimep.empresa;
+
+public class Analistas extends Funcionario {
+
+	public Analistas(String nome) {
+		super(nome);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public double calculaPLR() {
+		return super.salario * 1.15;
+	}
+
+}
+package br.com.unimep.empresa;
+
+public class ControlaPremio {
+	
+	public double calculaPremio(Funcionario f) {
+		double premio = f.calculaPLR() + 450;
+		return premio;
+	}
+
+}
+package br.com.unimep.empresa;
+
+public class Coordenador extends Funcionario implements Gestao {
+	
+	public Coordenador(String nome) {
+		super(nome);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public double calculaPLR() {
+		return super.salario * 0.60;
+	}
+
+	@Override
+	public double bonusResultado(double valor) {
+		return valor * 1.10;
+	}
+
+	@Override
+	public double bonusCarreira(int anos, double valor) {
+		double resultado = 0.00;
+		
+		if(anos >5) {
+			resultado = valor * 1.25;
+		}else if (anos <=5) {
+			resultado = valor * 1.15;
+		}
+		
+		return resultado;
+	}
+
+}
+package br.com.unimep.empresa;
+
+public abstract class Funcionario implements Gestao{
+
+	private String nome;
+	private String email;
+	private String telefone;
+	protected double salario;
+	
+	public Funcionario(String nome) {
+		this.nome = nome;
+	}
+	
+	public Funcionario(String nome, String email) {
+		this.nome = nome;
+		this.email = email;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	public double getSalario() {
+		return salario;
+	}
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
+	
+
+//	public double calculaPLR() {
+//		return this.salario * 0.15;
+//	}
+	
+	public abstract double calculaPLR();
+
+	
+}
+package br.com.unimep.empresa;
+
+public class Gerente extends Funcionario implements Gestao {
+	
+	public Gerente(String nome) {
+		super(nome);
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Gerente(String nome, String email) {
+		// TODO Auto-generated constructor stub
+		super(nome,email);
+//		super(email);
+		
+	}
+	
+
+	public double calculaPLR() {
+		return super.salario * 1.20;
+	}
+
+	@Override
+	public double bonusResultado(double valor) {
+		return valor * 1.10;
+	}
+
+	@Override
+	public double bonusCarreira(int anos, double valor) {
+		double resultado = 0.00;
+		
+		if(anos >5) {
+			resultado = valor * 1.25;
+		}else if (anos <=5) {
+			resultado = valor * 1.15;
+		}
+		
+		return resultado;
+	}
+
+}
+package br.com.unimep.empresa;
+
+public interface Gestao {
+
+	public abstract double bonusResultado(double valor) ;
+	
+	public abstract double bonusCarreira(int anos, double valor) ;
+	
+}
+
+package br.com.unimep.empresa;
+
+public class Operadores extends Funcionario {
+
+	public Operadores(String nome) {
+		super(nome);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public double calculaPLR() {
+		return super.salario * 1.15;
+	}
+
+}
